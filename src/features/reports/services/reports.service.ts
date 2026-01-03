@@ -2,11 +2,8 @@ import type { ApiResponse } from '@/core/types/api-response'
 import type { Report, ReportGeneratorPayload } from '../types/reports.types'
 import { REPORTS_MOCK_DATA } from '../reports.constants'
 
-const delay = (ms: number) => new Promise((res) => setTimeout(res, ms))
-
 export const reportService = {
   async getReports(): Promise<ApiResponse<Report[]>> {
-    await delay(500)
     return {
       data: REPORTS_MOCK_DATA,
       message: 'Reportes listados con éxito',
@@ -14,13 +11,12 @@ export const reportService = {
   },
 
   async generateReport(payload: ReportGeneratorPayload): Promise<ApiResponse<Report>> {
-    await delay(1000)
     const newReport: Report = {
       id: Math.floor(Math.random() * 1000),
       title: payload.title,
       created_at: new Date().toISOString().replace('T', ' ').substring(0, 19),
-      status: 'pending',
-      download_url: '',
+      status: 'completed',
+      download_url: '/reporte_demo.xlsx',
     }
     return {
       data: newReport,
@@ -29,7 +25,6 @@ export const reportService = {
   },
 
   async getReportById(id: number): Promise<ApiResponse<Report>> {
-    await delay(300)
     const report = REPORTS_MOCK_DATA.find((r) => r.id === id)
     if (!report) throw new Error('Reporte no encontrado')
     return {
