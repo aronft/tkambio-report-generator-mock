@@ -2,7 +2,7 @@ services:
   tkambio-frontend:
     build: .
     ports:
-      - "5175:5173"
+      - "5176:5173"
     volumes:
       - .:/app
       - /app/node_modules
