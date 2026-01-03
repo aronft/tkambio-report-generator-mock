@@ -10,6 +10,6 @@ export const authService = {
   },
 
   async verifyToken() {
-    return MOCK_USER_CREDENTIALS
+    return MOCK_USER_CREDENTIALS.user
   },
 }
